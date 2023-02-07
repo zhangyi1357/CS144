@@ -8,6 +8,8 @@
 
 #include <optional>
 
+enum class TCPReceiverState { LISTEN = 0, SYN_RECV, FIN_RECV };
+
 //! \brief The "receiver" part of a TCP implementation.
 
 //! Receives and reassembles segments into a ByteStream, and computes
@@ -20,12 +22,17 @@ class TCPReceiver {
     //! The maximum number of bytes we'll store.
     size_t _capacity;
 
+    TCPReceiverState _state;  // the state of the receiver
+    WrappingInt32 _isn;       // initial sequence number
+    uint64_t _checkpoint;     // the index of the last byte assembled
+
   public:
     //! \brief Construct a TCP receiver
     //!
     //! \param capacity the maximum number of bytes that the receiver will
     //!                 store in its buffers at any give time.
-    TCPReceiver(const size_t capacity) : _reassembler(capacity), _capacity(capacity) {}
+    TCPReceiver(const size_t capacity)
+        : _reassembler(capacity), _capacity(capacity), _state(TCPReceiverState::LISTEN), _isn(0), _checkpoint(0) {}
 
     //! \name Accessors to provide feedback to the remote TCPSender
     //!@{

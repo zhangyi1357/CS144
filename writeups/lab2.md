@@ -9,7 +9,7 @@ I collaborated with: [list sunetids here]
 
 I would like to thank/reward these classmates for their help: [list sunetids here]
 
-This lab took me about [1.5] hours to do. I [did/did not] attend the lab session.
+This lab took me about [4.5] hours to do. I [did/did not] attend the lab session.
 
 Program Structure and Design of the TCPReceiver and wrap/unwrap routines:
 []
