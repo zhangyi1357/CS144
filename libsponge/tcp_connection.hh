@@ -21,6 +21,22 @@ class TCPConnection {
     //! in case the remote TCPConnection doesn't know we've received its whole stream?
     bool _linger_after_streams_finish{true};
 
+    bool _active{true};
+
+    bool _syn_get{false};
+
+    size_t _time{0};
+
+    size_t _time_last_segment_received{0};
+
+    void _send_and_reset_connection();
+
+    void _reset_connection();
+
+    void _set_segment_ackno_and_win(TCPSegment &sending_seg);
+
+    void _send_all_segments();
+
   public:
     //! \name "Input" interface for the writer
     //!@{

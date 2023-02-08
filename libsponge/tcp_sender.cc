@@ -46,8 +46,9 @@ void TCPSender::fill_window() {
             seg.header().fin = true;
             _fin_sent = true;
         }
-        if (seg.length_in_sequence_space() == 0)
+        if (seg.length_in_sequence_space() == 0) {
             return;
+        }
         _send_segment(seg);
     }
 }
