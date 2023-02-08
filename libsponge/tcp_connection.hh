@@ -35,7 +35,7 @@ class TCPConnection {
 
     void _set_segment_ackno_and_win(TCPSegment &sending_seg);
 
-    void _send_all_segments();
+    bool _send_all_segments();
 
   public:
     //! \name "Input" interface for the writer
